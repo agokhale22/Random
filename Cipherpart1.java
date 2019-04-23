@@ -12,6 +12,8 @@ public class Cipherpart1
 		Scanner in = new Scanner(System.in);
 		
 		
+		
+		
 		int shift = -3;
 		
 		System.out.println("Please enter a file name: ");
@@ -30,9 +32,47 @@ public class Cipherpart1
 			line = reader.nextLine();
 				for (int i = 0; i<line.length(); i++)
 				{
+					charread = line.charAt(i);
 					
+					if (isLower(charread))
+					{
+						num = ((charread-'a' + shift) %26);
+					
+					
+					if (num<0)
+					
+						num+=26;
+						out.print((char)(num + 'a'));
+					}
+				
+					else if (isUpper(charread))
+					{
+						num = ((charread-'A' + shift) %26);
+							if (num<0)
+								num+=26;
+						out.print((char)(num + 'A'));
+					}
+					
+					else 
+					{
+						out.print(out);
+						continue;
+					}
 				}
+				out.println();
+			}
+			out.close();
+			System.out.println("Result written to " + myFiletxt.substring(0, myFiletxt.length()-4));
 		}
+	
+	public static boolean isLower (char c)
+	{
+		return c >= 'a' && c<= 'z';
 	}
-
+	
+	public static boolean isUpper (char c)
+	{
+		return c >= 'A' && c<= 'Z';
+	}
 }
+
